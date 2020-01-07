@@ -41,8 +41,15 @@ function startTimer() {
 
     time--;
 
-    $(".time").push(time);
+    $(".time").text("Time Remaining: " + time);
+
+    if (time === 0) {
+      stop();
+    }
   };
 
+  function stop() {
+    clearInterval(interval);
+  };
   startTimer();
   console.log(time);
