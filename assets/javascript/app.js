@@ -10,29 +10,57 @@
 // is this a function or an onject?
 // how do we update the DOM? ONLY use jquery for updating html and not for the javascript - this is javascript interval timing
 // 
-var correct = 0;
-var incorrect = 0;
-var noAnswer = 0;
-var answerSelect = false;
-var time = 30;
-var interval;
+$(document).ready(function () {
 
-var questionSet = [{
+
+
+  var correct = 0;
+  var incorrect = 0;
+  var noAnswer = 0;
+  var answerSelect = false;
+  var time = 31;
+  var gameIndex = 0;
+  var interval;
+
+  var questionSet = [{
     question: "Which season was the only one without a Thanksgiving episode?",
     answers: [1, 3, 2, 6],
     correct: 2,
     image: ("../images/thanksgiving.webp")
-},
-{
+  },
+  {
     question: "What is the name of Joey's stuffed penguin?",
     answers: ["Hugsy", "Buddy", "Paolo", "Emily"],
     correct: "Hugsy",
     image: ("../images/hugsy-3.jpg")
-}
-];
-console.log(questionSet[1].correct)
+  }
+  ];
+  console.log(questionSet[1].correct)
+  console.log(questionSet[gameIndex]);
+  console.log(questionSet[gameIndex].answers)
 
-function startTimer() {
+  // start game button - can be called later or here I think
+  $("#btn").click(startGame);
+
+  // need function for once button is clicked to start game and load question in - should be able to set a for loop top cycle through each question
+
+  function startGame() {
+    startTimer();
+    $("#btn").remove();
+    answerSelect;
+    correctAnswer = questionSet[gameIndex].correct;
+    var question = questionSet[gameIndex].question;
+    $(".question").text(question);
+    console.log(question);
+    console.log(correctAnswer);
+
+    answerSet = questionSet[gameIndex].answers;
+    $(".answers").append(answerSet);
+
+  }
+
+
+  function startTimer() {
     clearInterval(interval);
     interval = setInterval(decrement, 1000);
   }
@@ -51,5 +79,6 @@ function startTimer() {
   function stop() {
     clearInterval(interval);
   };
-  startTimer();
+  // startTimer();
   console.log(time);
+});

@@ -1,8 +1,13 @@
 /* body {
     background-image: url(../images/friends\ background\ photo.jpg);
-}
+} */
+
 
 div {
     background-color: rgba(180, 80, 62, 0.438);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-} */
+    text-align: center;
+    margin: 60px;
+    padding: 60px;
+}
+
