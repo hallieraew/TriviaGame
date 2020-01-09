@@ -11,3 +11,6 @@ div {
     padding: 60px;
 }
 
+.answer {
+    position: block;
+}

@@ -55,7 +55,20 @@ $(document).ready(function () {
     console.log(correctAnswer);
 
     answerSet = questionSet[gameIndex].answers;
-    $(".answers").append(answerSet);
+
+    for (i=0; i<answerSet.length; i++) {
+
+      var a = $("<button>");
+          a.addClass("answer");
+          // Added a data-attribute
+          a.attr("data-name", answerSet[i]);
+          // Provided the initial button text
+          a.text(answerSet[i]);
+          // Added the button to the answers div
+          $(".answers").append(a);
+    // $(".answers").append(answerSet);
+    
+  }
 
   }
 
