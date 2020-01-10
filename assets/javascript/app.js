@@ -11,9 +11,7 @@
 // how do we update the DOM? ONLY use jquery for updating html and not for the javascript - this is javascript interval timing
 // 
 $(document).ready(function () {
-
-
-
+ 
   var correct = 0;
   var incorrect = 0;
   var noAnswer = 0;
@@ -40,58 +38,80 @@ $(document).ready(function () {
   console.log(questionSet[gameIndex].answers)
 
   // start game button - can be called later or here I think
-  $("#btn").click(startGame);
-
+  
   // need function for once button is clicked to start game and load question in - should be able to set a for loop top cycle through each question
-
+  
   function startGame() {
     startTimer();
     $("#btn").remove();
     answerSelect;
+    gameContent();
+    correct=0;
+    incorrect=0;
+    noAnswer=0;
+  }
+  
+  function gameContent() {
+    
     correctAnswer = questionSet[gameIndex].correct;
     var question = questionSet[gameIndex].question;
     $(".question").text(question);
     console.log(question);
     console.log(correctAnswer);
-
-    answerSet = questionSet[gameIndex].answers;
-
-    for (i=0; i<answerSet.length; i++) {
-
-      var a = $("<button>");
-          a.addClass("answer");
-          // Added a data-attribute
-          a.attr("data-name", answerSet[i]);
-          // Provided the initial button text
-          a.text(answerSet[i]);
-          // Added the button to the answers div
-          $(".answers").append(a);
-    // $(".answers").append(answerSet);
     
-  }
-
-  }
-
-
-  function startTimer() {
-    clearInterval(interval);
-    interval = setInterval(decrement, 1000);
-  }
-
-  function decrement() {
-
-    time--;
-
-    $(".time").text("Time Remaining: " + time);
-
-    if (time === 0) {
-      stop();
+    answerSet = questionSet[gameIndex].answers;
+    for (i = 0; i < answerSet.length; i++) {
+      
+      var a = $("<button>");
+      a.addClass("answer");
+      // Added a data-attribute
+      a.attr("data-name", answerSet[i]);
+      // Provided the initial button text
+      a.text(answerSet[i]);
+      // Added the button to the answers div
+      $(".answers").append(a);
+      // $(".answers").append(answerSet);
+      console.log(a);
     }
-  };
-
-  function stop() {
-    clearInterval(interval);
-  };
-  // startTimer();
-  console.log(time);
+    
+    
+    $(".answers").on("click", function (answerChoice) {
+      stop();
+      var selectRight = a
+      if (selectRight === correctAnswer) {
+        console.log("this is the right answer i think");
+        $(".answers").remove();
+        $(".answers").append("The answer is: " + correctAnswer);
+        $(".answers").append("<img>");
+        correct ++;
+        answerSelect = true;
+      }
+      else {
+        stop();
+      }
+    })
+  }
+        
+    function startTimer() {
+      clearInterval(interval);
+      interval = setInterval(decrement, 1000);
+    };
+    
+    function decrement() {
+      
+      time--;
+      
+      $(".time").text("Time Remaining: " + time);
+      
+      if (time === 0) {
+        stop();
+      }
+    };
+    
+    function stop() {
+      clearInterval(interval);
+    };
+    // startTimer();
+    // console.log(time)
+  $("#btn").click(startGame);
 });
