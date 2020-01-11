@@ -1,16 +1,6 @@
-// set variable to hold interval time
-// count function per second
-// clock running true false set inside an if statement so only one interval is running at once 
-// reset function
-// question set - question, answer, image, correct answer -- one variable 
+
 // 
-// function for displaying image
-// function for clicked answer
-// function for displaying correct - or is this an if statement inside of the question function?
-// is this a function or an onject?
-// how do we update the DOM? ONLY use jquery for updating html and not for the javascript - this is javascript interval timing
-// 
-$(document).ready(function () {
+// $(document).ready(function() {
  
   var correct = 0;
   var incorrect = 0;
@@ -64,25 +54,21 @@ $(document).ready(function () {
       
       var a = $("<button>");
       a.addClass("answer");
-      // Added a data-attribute
       a.attr("data-name", answerSet[i]);
-      // Provided the initial button text
       a.text(answerSet[i]);
-      // Added the button to the answers div
-      $(".answers").append(a);
-      // $(".answers").append(answerSet);
+      $("#answers").append(a);
       console.log(a);
     }
     
     
-    $(".answers").on("click", function (answerChoice) {
+    $("#answers").on("click", function(event) {
       stop();
-      var selectRight = a
-      if (selectRight === correctAnswer) {
+      var selection = $(this).attr(correctAnswer);
+      if (selection === correctAnswer) {
         console.log("this is the right answer i think");
-        $(".answers").remove();
-        $(".answers").append("The answer is: " + correctAnswer);
-        $(".answers").append("<img>");
+        $("#answers").remove();
+        $("#answers").append("The answer is: " + correctAnswer);
+        $("#answers").append("<img>");
         correct ++;
         answerSelect = true;
       }
@@ -113,5 +99,5 @@ $(document).ready(function () {
     };
     // startTimer();
     // console.log(time)
-  $("#btn").click(startGame);
-});
+  $("#btn").on("click", startGame);
+
