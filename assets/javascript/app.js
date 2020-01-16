@@ -1,6 +1,6 @@
 
 // 
-// $(document).ready(function() {
+$(document).ready(function() {
  
   var correct = 0;
   var incorrect = 0;
@@ -9,6 +9,8 @@
   var time = 31;
   var gameIndex = 0;
   var interval;
+  var selection;
+  var a;
 
   var questionSet = [{
     question: "Which season was the only one without a Thanksgiving episode?",
@@ -52,19 +54,20 @@
     answerSet = questionSet[gameIndex].answers;
     for (i = 0; i < answerSet.length; i++) {
       
-      var a = $("<button>");
+      a = $("<button>");
       a.addClass("answer");
-      a.attr("data-name", answerSet[i]);
+      a.attr("data-name", answerSet[i]); 
       a.text(answerSet[i]);
       $("#answers").append(a);
-      console.log(a);
+      console.log(a.text());
     }
     
     
     $("#answers").on("click", function(event) {
       stop();
-      var selection = $(this).attr(correctAnswer);
-      if (selection === correctAnswer) {
+      // selection = $(this).attr(correctAnswer); 
+      // .attr(correctAnswer); took this off of selection assignment above
+      if ($(this) === correctAnswer) {
         console.log("this is the right answer i think");
         $("#answers").remove();
         $("#answers").append("The answer is: " + correctAnswer);
@@ -100,4 +103,4 @@
     // startTimer();
     // console.log(time)
   $("#btn").on("click", startGame);
-
+});
