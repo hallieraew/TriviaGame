@@ -45,7 +45,7 @@ $(document).ready(function() {
   
   function gameContent() {
     
-    correctAnswer = questionSet[gameIndex].correct;
+    var correctAnswer = questionSet[gameIndex].correct;
     var question = questionSet[gameIndex].question;
     $(".question").text(question);
     console.log(question);
@@ -56,20 +56,21 @@ $(document).ready(function() {
       
       a = $("<button>");
       a.addClass("answer");
-      a.attr("data-name", answerSet[i]); 
+      a.attr("data-answer", answerSet[i]); 
       a.text(answerSet[i]);
       $("#answers").append(a);
       console.log(a.text());
     }
     
     
-    $("#answers").on("click", function(event) {
+    $(".answer").on("click", function(event) {
       stop();
       // selection = $(this).attr(correctAnswer); 
       // .attr(correctAnswer); took this off of selection assignment above
-      if ($(this) === correctAnswer) {
+      console.log(questionSet[gameIndex].correct);
+      if (parseInt($(this).attr("data-answer")) === questionSet[gameIndex].correct) {
         console.log("this is the right answer i think");
-        $("#answers").remove();
+        $("#answers").empty();
         $("#answers").append("The answer is: " + correctAnswer);
         $("#answers").append("<img>");
         correct ++;
